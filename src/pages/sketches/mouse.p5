@@ -1,0 +1,33 @@
+let boxes;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  boxes = [];
+}
+
+function draw() {
+  background(255);
+  camera(frameCount, 0, 100, frameCount, 0, 0, 0, 1, 0);
+  boxes.push({
+    x: frameCount + windowWidth / 4,
+    y: mouseY - windowHeight / 2,
+    z: -200 + mouseX - windowWidth / 8,
+  });
+
+  for (let i = 0; i < boxes.length; i++) {
+    translate(boxes[i].x, boxes[i].y, boxes[i].z);
+    box(5);
+    translate(-boxes[i].x, -boxes[i].y, -boxes[i].z);
+  }
+
+  // This is a detail:
+  // When we have 2000 boxes,
+  // remove the first 1000 so we don't store an infinite amount
+  if (boxes.length === 2000) {
+    boxesTemp = [];
+    for (let i = 0; i < 1000; i++) {
+      boxesTemp.push(boxes[i + 1000]);
+    }
+    boxes = boxesTemp;
+  }
+}
