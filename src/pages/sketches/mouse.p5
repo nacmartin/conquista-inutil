@@ -11,7 +11,7 @@ function draw() {
   boxes.push({
     x: frameCount + windowWidth / 4,
     y: mouseY - windowHeight / 2,
-    z: -200 + mouseX - windowWidth / 8,
+    z: -400 + mouseX - windowWidth / 8,
   });
 
   for (let i = 0; i < boxes.length; i++) {
@@ -21,8 +21,8 @@ function draw() {
   }
 
   // This is a detail:
-  // When we have 2000 boxes,
-  // remove the first 1000 so we don't store an infinite amount
+  // When we have 2000 boxes, remove the first 1000
+  // so we don't store an infinite amount in memory
   if (boxes.length === 2000) {
     boxesTemp = [];
     for (let i = 0; i < 1000; i++) {

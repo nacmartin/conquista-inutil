@@ -13,8 +13,8 @@ const runSketch = (code, title) => {
   }
   const iframe = document.createElement("iframe");
   iframe.id = title;
-  iframe.width = "100%";
-  iframe.height = "200";
+  iframe.width = "500";
+  iframe.height = "500";
   iframe.frameBorder = "0";
   iframe.marginHeight = "0";
   iframe.marginWidth = "0";

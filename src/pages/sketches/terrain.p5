@@ -1,0 +1,29 @@
+let noiseScale = 0.02;
+let seaLevel = 100;
+let numSamples = 200;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  background(255);
+  noStroke();
+  ambientLight(128, 128, 128);
+  directionalLight(255, 255, 255, -0.1, 0.5, 0.1);
+  camera(0, -250, 0, 0, 0, 200, 0, 1, 0);
+  for (let j = 0; j < numSamples; j++) {
+    for (let i = 0; i < numSamples; i++) {
+      let noiseVal = noise(i * noiseScale, j * noiseScale) * 255;
+      let boxHeight = noiseVal;
+      if (noiseVal > seaLevel) {
+        fill(noiseVal);
+      } else {
+        boxHeight = seaLevel;
+        fill(100, 120, 180);
+      }
+      translate((i - numSamples / 2) * 2, 100 - boxHeight / 2, j * 2);
+      box(3, boxHeight, 3);
+      translate(-(i - numSamples / 2) * 2, -100 + boxHeight / 2, -j * 2);
+    }
+  }
+}
+
+function draw() {}
